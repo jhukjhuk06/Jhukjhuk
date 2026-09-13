@@ -5,15 +5,121 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Jhuk Jhuk Holidays | Travel Beyond Destinations</title>
 <meta name="description" content="Jhuk Jhuk Holidays — curated domestic and international holidays, custom itineraries and memorable travel experiences.">
+<meta name="theme-color" content="#17135a">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://jhukjhukholidays.in/">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="assets/images/jhuk-jhuk-logo.png">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Jhuk Jhuk Holidays | Travel Beyond Destinations">
+<meta property="og:description" content="Curated holidays, custom itineraries and thoughtfully planned journeys across India and the world.">
+<meta property="og:url" content="https://jhukjhukholidays.in/">
+<meta property="og:image" content="assets/images/jhuk-jhuk-logo.png">
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"TravelAgency",
+  "name":"Jhuk Jhuk Holidays",
+  "url":"https://jhukjhukholidays.in/",
+  "telephone":"+91 88066 84300",
+  "description":"Curated domestic and international holidays, custom itineraries and travel assistance.",
+  "areaServed":"IN",
+  "priceRange":"₹₹"
+}
+</script>
 <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body class="locked">
-<div class="brand-intro" id="brandIntro"><div class="glow g1"></div><div class="glow g2"></div><div class="intro-content"><div class="intro-logo-wrap"><div class="intro-ring"></div><img class="intro-logo" src="assets/images/jhuk-jhuk-logo.png" alt="Jhuk Jhuk Holidays"></div><div class="intro-tagline"><span>Travel</span><span>Beyond</span><span class="gradient-text">Destinations</span></div><div class="intro-sub">Your Journey • Our Passion</div><div class="loader"><span></span></div></div></div>
-<header class="navbar"><div class="container nav-inner"><a href="#home" class="company-logo"><img src="assets/images/jhuk-jhuk-logo.png" alt="Jhuk Jhuk Holidays"></a><ul class="nav-links" id="navLinks"><li><a href="#home">Home</a></li><li><a href="#destinations">Destinations</a></li><li><a href="#packages">Packages</a></li><li><a href="#why">Why Us</a></li><li><a href="#contact">Contact</a></li></ul><div class="nav-actions"><button class="btn btn-primary" id="planTrip">Plan My Trip</button><button class="menu" id="menuBtn" aria-label="Open menu">☰</button></div></div></header>
-<main>
-<section class="hero" id="home"><div class="container"><div class="hero-content"><div class="badge">✨ Your Journey. Our Passion.</div><h1>Travel Beyond <span>Destinations.</span></h1><p>Curated holidays, unforgettable journeys and thoughtfully planned experiences across India and around the world.</p><div class="hero-buttons"><a href="#packages" class="btn btn-primary">Explore Packages</a><button class="btn btn-white" id="customTrip">Create Custom Trip</button></div></div></div></section>
-<div class="search-wrap" id="planner"><div class="container"><form class="search-panel" id="holidaySearch"><div class="field"><label>Where to?</label><input id="destination" placeholder="Kerala, Bali, Dubai..." required></div><div class="field"><label>Travel Month</label><input type="month"></div><div class="field"><label>Travellers</label><select id="travellers"><option>2 Travellers</option><option>3 Travellers</option><option>4 Travellers</option><option>5+ Travellers</option></select></div><div class="field"><label>Budget</label><select><option>Any Budget</option><option>Under ₹20,000</option><option>₹20,000 – ₹40,000</option><option>₹40,000 – ₹75,000</option><option>₹75,000+</option></select></div><button class="search-btn">Enquire Now</button></form></div></div>
-<section class="section" id="destinations"><div class="container"><div class="section-head"><div><span class="eyebrow">Explore</span><h2 class="title">Destinations worth getting lost in.</h2></div><p class="lead">From peaceful mountains to tropical beaches, discover journeys designed around the way you actually want to travel.</p></div><div class="destination-grid">
+<a class="skip-link" href="#main-content">Skip to content</a>
+<div class="brand-intro" id="brandIntro" aria-label="Jhuk Jhuk Holidays introduction">
+  <div class="intro-collage" aria-hidden="true">
+    <div class="intro-photo intro-photo-kashmir"></div>
+    <div class="intro-photo intro-photo-maldives"></div>
+    <div class="intro-photo intro-photo-bali"></div>
+    <div class="intro-photo intro-photo-rajasthan"></div>
+    <div class="intro-photo intro-photo-dubai"></div>
+  </div>
+  <div class="intro-vignette"></div><div class="intro-stars"></div><div class="intro-grid"></div>
+  <div class="intro-globe" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+  <div class="intro-route" aria-hidden="true"><svg viewBox="0 0 1100 430" preserveAspectRatio="none"><path class="route-path" d="M55 315 C220 75 365 360 515 185 S790 65 1035 265"/><circle class="route-dot" cx="55" cy="315" r="6"/><circle class="route-dot route-dot-2" cx="1035" cy="265" r="6"/></svg></div>
+  <div class="intro-plane" aria-hidden="true">✈</div>
+  <div class="intro-location intro-loc-1"><b>01</b><span>KASHMIR</span><small>DISCOVER</small></div>
+  <div class="intro-location intro-loc-2"><b>02</b><span>MALDIVES</span><small>RELAX</small></div>
+  <div class="intro-location intro-loc-3"><b>03</b><span>BALI</span><small>UNWIND</small></div>
+  <div class="intro-location intro-loc-4"><b>04</b><span>RAJASTHAN</span><small>EXPERIENCE</small></div>
+  <button class="intro-skip" id="introSkip" type="button">SKIP INTRO <span>→</span></button>
+  <div class="intro-content">
+    <div class="intro-overline"><span></span> THE JOURNEY STARTS HERE <span></span></div>
+    <div class="intro-logo-wrap"><div class="intro-ring"></div><div class="intro-ring intro-ring-2"></div><div class="intro-logo-halo"></div><img class="intro-logo" src="assets/images/jhuk-jhuk-logo-exact.png" alt="Jhuk Jhuk Holidays"></div>
+    <div class="intro-tagline"><span class="gradient-text">Travel Beyond Destinations</span></div>
+    <div class="intro-sub">Curated escapes • thoughtful details • unforgettable moments</div>
+    <div class="intro-progress"><div class="intro-progress-track"><span></span></div><b>LET'S EXPLORE&nbsp; →</b></div>
+  </div>
+  <div class="intro-footer"><span>DOMESTIC</span><i></i><span>INTERNATIONAL</span><i></i><span>MADE FOR YOU</span></div>
+</div>
+<header class="navbar"><div class="container nav-inner"><a href="#home" class="company-logo"><img src="assets/images/jhuk-jhuk-logo.png" alt="Jhuk Jhuk Holidays"></a><ul class="nav-links" id="navLinks"><li><a href="#home">Home</a></li><li><a href="#destinations">Destinations</a></li><li><a href="#packages">Packages</a></li><li><a href="#why">Why Us</a></li><li><a href="#contact">Contact</a></li></ul><div class="nav-actions"><button class="btn btn-primary" id="planTrip">Plan My Trip</button><button class="menu" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">☰</button></div></div></header>
+<main id="main-content">
+<section class="hero hero-poster-stage" id="home" aria-label="Featured travel destinations">
+<div class="hero-poster-backdrop">
+  <div class="hero-cinematic-bg" aria-hidden="true">
+    <div class="hero-cinematic-photo hero-cinematic-kashmir"></div>
+    <div class="hero-cinematic-photo hero-cinematic-rajasthan"></div>
+    <div class="hero-cinematic-photo hero-cinematic-dubai"></div>
+    <div class="hero-cinematic-photo hero-cinematic-bali"></div>
+    <div class="hero-cinematic-photo hero-cinematic-maldives"></div>
+    <div class="hero-cinematic-stars"></div>
+    <div class="hero-cinematic-earth"></div>
+    <div class="hero-cinematic-route"><svg viewBox="0 0 1400 520" preserveAspectRatio="none"><path d="M70 410 C300 80 470 440 680 215 S1010 80 1330 350"></path><circle cx="70" cy="410" r="7"></circle><circle cx="1330" cy="350" r="7"></circle></svg></div>
+    <div class="hero-cinematic-plane">✈</div>
+    <div class="hero-cinematic-marker hero-marker-kashmir"><b>●</b><span>KASHMIR</span><small>DISCOVER</small></div>
+    <div class="hero-cinematic-marker hero-marker-rajasthan"><b>●</b><span>RAJASTHAN</span><small>EXPERIENCE</small></div>
+    <div class="hero-cinematic-marker hero-marker-dubai"><b>●</b><span>DUBAI</span><small>EXPLORE</small></div>
+    <div class="hero-cinematic-marker hero-marker-bali"><b>●</b><span>BALI</span><small>UNWIND</small></div>
+    <div class="hero-cinematic-marker hero-marker-maldives"><b>●</b><span>MALDIVES</span><small>RELAX</small></div>
+  </div>
+  <div class="poster-glow poster-glow-one"></div><div class="poster-glow poster-glow-two"></div>
+  <div class="poster-carousel" id="posterCarousel" tabindex="0" aria-label="Featured destination video carousel">
+    <article class="poster-card" data-index="0" data-video="https://assets.mixkit.co/videos/preview/mixkit-landscape-of-the-snowy-mountain-with-a-lake-4732-large.mp4"><video class="poster-media" muted playsinline autoplay preload="metadata" poster="https://images.unsplash.com/photo-1595815771614-ade9d652a65d?auto=format&fit=crop&w=2000&q=92" aria-hidden="true"><source src="https://assets.mixkit.co/videos/preview/mixkit-landscape-of-the-snowy-mountain-with-a-lake-4732-large.mp4" type="video/mp4"></video><img class="poster-fallback" src="https://images.unsplash.com/photo-1595815771614-ade9d652a65d?auto=format&fit=crop&w=2000&q=92" alt="Kashmir mountains and lake"><div class="poster-shade"></div><div class="poster-copy"><small>DISCOVER</small><strong>KASHMIR</strong><span>Paradise on Earth</span></div><span class="poster-video-badge">▶ CINEMATIC</span></article>
+    <article class="poster-card" data-index="1" data-video="https://assets.mixkit.co/videos/preview/mixkit-tropical-island-landscape-view-4692-large.mp4"><video class="poster-media" muted playsinline autoplay preload="metadata" poster="https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=2000&q=92" aria-hidden="true"><source src="https://assets.mixkit.co/videos/preview/mixkit-tropical-island-landscape-view-4692-large.mp4" type="video/mp4"></video><img class="poster-fallback" src="https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=2000&q=92" alt="Kerala tropical backwaters"><div class="poster-shade"></div><div class="poster-copy"><small>EXPLORE</small><strong>KERALA</strong><span>Backwaters & Beyond</span></div><span class="poster-video-badge">▶ CINEMATIC</span></article>
+    <article class="poster-card" data-index="2" data-video="https://assets.mixkit.co/videos/preview/mixkit-white-sand-beach-and-palm-trees-1564-large.mp4"><video class="poster-media" muted playsinline autoplay preload="metadata" poster="https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=2000&q=92" aria-hidden="true"><source src="https://assets.mixkit.co/videos/preview/mixkit-white-sand-beach-and-palm-trees-1564-large.mp4" type="video/mp4"></video><img class="poster-fallback" src="https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=2000&q=92" alt="Maldives tropical resort"><div class="poster-shade"></div><div class="poster-copy"><small>ESCAPE TO</small><strong>MALDIVES</strong><span>Barefoot Luxury</span></div><span class="poster-video-badge">▶ CINEMATIC</span></article>
+    <article class="poster-card" data-index="3" data-video="https://assets.mixkit.co/videos/preview/mixkit-aerial-view-of-a-coastline-at-sunset-4135-large.mp4"><video class="poster-media" muted playsinline autoplay preload="metadata" poster="https://images.unsplash.com/photo-1599661046289-e31897846e41?auto=format&fit=crop&w=2000&q=92" aria-hidden="true"><source src="https://assets.mixkit.co/videos/preview/mixkit-aerial-view-of-a-coastline-at-sunset-4135-large.mp4" type="video/mp4"></video><img class="poster-fallback" src="https://images.unsplash.com/photo-1599661046289-e31897846e41?auto=format&fit=crop&w=2000&q=92" alt="Rajasthan palace"><div class="poster-shade"></div><div class="poster-copy"><small>EXPERIENCE</small><strong>RAJASTHAN</strong><span>Royal Heritage</span></div><span class="poster-video-badge">▶ CINEMATIC</span></article>
+    <article class="poster-card" data-index="4" data-video="https://assets.mixkit.co/videos/preview/mixkit-daytime-city-traffic-aerial-view-56-large.mp4"><video class="poster-media" muted playsinline autoplay preload="metadata" poster="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=2000&q=92" aria-hidden="true"><source src="https://assets.mixkit.co/videos/preview/mixkit-daytime-city-traffic-aerial-view-56-large.mp4" type="video/mp4"></video><img class="poster-fallback" src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=2000&q=92" alt="Dubai skyline"><div class="poster-shade"></div><div class="poster-copy"><small>DISCOVER</small><strong>DUBAI</strong><span>Modern Wonders</span></div><span class="poster-video-badge">▶ CINEMATIC</span></article>
+    <article class="poster-card" data-index="5" data-video="https://assets.mixkit.co/videos/preview/mixkit-tropical-island-landscape-view-4692-large.mp4"><video class="poster-media" muted playsinline autoplay preload="metadata" poster="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=2000&q=92" aria-hidden="true"><source src="https://assets.mixkit.co/videos/preview/mixkit-tropical-island-landscape-view-4692-large.mp4" type="video/mp4"></video><img class="poster-fallback" src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=2000&q=92" alt="Bali tropical landscape"><div class="poster-shade"></div><div class="poster-copy"><small>FEEL</small><strong>BALI</strong><span>Island Escape</span></div><span class="poster-video-badge">▶ CINEMATIC</span></article>
+    <article class="poster-card" data-index="6" data-video="https://assets.mixkit.co/videos/preview/mixkit-white-sand-beach-and-palm-trees-1564-large.mp4"><video class="poster-media" muted playsinline autoplay preload="metadata" poster="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=2000&q=92" aria-hidden="true"><source src="https://assets.mixkit.co/videos/preview/mixkit-white-sand-beach-and-palm-trees-1564-large.mp4" type="video/mp4"></video><img class="poster-fallback" src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=2000&q=92" alt="Andaman tropical beach"><div class="poster-shade"></div><div class="poster-copy"><small>UNWIND IN</small><strong>ANDAMAN</strong><span>Blue Water Bliss</span></div><span class="poster-video-badge">▶ CINEMATIC</span></article>
+  </div>
+  <button class="poster-arrow poster-prev" id="posterPrev" type="button" aria-label="Previous featured destination">‹</button>
+  <button class="poster-arrow poster-next" id="posterNext" type="button" aria-label="Next featured destination">›</button>
+</div>
+<div class="hero-poster-overlay"></div>
+<div class="container hero-container"><div class="hero-content">
+  <div class="badge hero-brand-tagline"><span class="tagline-mark">✦</span> Travel Beyond Destinations <span class="tagline-mark">✦</span></div>
+  <div class="hero-kicker">CURATED ESCAPES • DOMESTIC & INTERNATIONAL</div>
+  <h1 class="hero-destinations-title"><span class="hero-title-top">TRAVEL BEYOND</span><span class="hero-script gradient-text">DESTINATION</span></h1>
+  <p>Curated holidays, unforgettable journeys and thoughtfully planned experiences across India and around the world.</p>
+  <div class="hero-buttons"><a href="#packages" class="btn btn-primary">Explore Packages</a><button class="btn btn-white" id="customTrip">Create Custom Trip</button></div>
+</div></div>
+<div class="poster-controls" aria-label="Featured destination controls"><div class="poster-dots" id="posterDots"></div><button type="button" class="poster-pause" id="posterPause" aria-label="Pause destination animation" aria-pressed="false">Ⅱ</button></div>
+<div class="hero-benefits" aria-label="Why travel with Jhuk Jhuk Holidays">
+  <div><b>◎</b><span><strong>12+ Destinations</strong><small>Curated escapes</small></span></div>
+  <div><b>♧</b><span><strong>Custom Itineraries</strong><small>Made around you</small></span></div>
+  <div><b>◇</b><span><strong>Travel Experts</strong><small>Thoughtful support</small></span></div>
+  <div><b>♡</b><span><strong>Lasting Memories</strong><small>Beyond the ordinary</small></span></div>
+</div>
+<div class="hero-scroll-cue"><span>⌄</span><small>SCROLL TO EXPLORE</small></div>
+<div class="hero-collect-note" aria-hidden="true">Collect Moments<br><em>Not Things</em></div>
+</section>
+<div class="search-wrap" id="planner"><div class="container"><form class="search-panel" id="holidaySearch"><div class="field"><label>Where to?</label><input id="destination" name="destination" autocomplete="off" placeholder="Kerala, Bali, Dubai..." aria-label="Travel destination" required></div><div class="field"><label>Travel Month</label><input type="month" id="travelMonth" name="travelMonth" aria-label="Travel month"></div><div class="field"><label>Travellers</label><select id="travellers" name="travellers" aria-label="Number of travellers"><option>2 Travellers</option><option>3 Travellers</option><option>4 Travellers</option><option>5+ Travellers</option></select></div><div class="field"><label>Budget</label><select id="budget" name="budget" aria-label="Travel budget"><option>Any Budget</option><option>Under ₹20,000</option><option>₹20,000 – ₹40,000</option><option>₹40,000 – ₹75,000</option><option>₹75,000+</option></select></div><button class="search-btn">Enquire Now</button></form></div></div>
+
+<div class="travel-promise" aria-label="Jhuk Jhuk Holidays travel promise">
+  <div class="container travel-promise-grid">
+    <div class="promise-item"><span>01</span><strong>Curated journeys</strong><small>Built around how you travel</small></div>
+    <div class="promise-item"><span>02</span><strong>Handpicked stays</strong><small>Comfort, character & location</small></div>
+    <div class="promise-item"><span>03</span><strong>Personal support</strong><small>Real help before & during travel</small></div>
+    <div class="promise-item"><span>04</span><strong>Flexible planning</strong><small>Your dates, pace & budget</small></div>
+  </div>
+</div>
+
+<section class="section" id="destinations"><div class="container"><div class="section-head"><div><span class="eyebrow">Explore • Beyond the obvious</span><h2 class="title">Places worth getting lost in.</h2></div><p class="lead">Start with the places everyone knows. Then let us take you a little further — to quieter corners, local stories and experiences most itineraries miss.</p></div><div class="destination-grid">
 <article class="destination destination-featured" data-place="Kerala">
           <img src="https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=1200&q=82" alt="Kerala" loading="lazy">
           <div class="destination-shine"></div>
@@ -123,7 +229,7 @@
           </div>
         </article>
 </div></div></section>
-<section class="section light" id="packages"><div class="container"><div class="section-head"><div><span class="eyebrow">Handpicked Holidays</span><h2 class="title">Trending packages.</h2></div><p class="lead">Easy planning, sensible pricing and itineraries designed for memorable holidays.</p></div><div class="package-grid">
+<section class="section light" id="packages"><div class="container"><div class="section-head"><div><span class="eyebrow">Handpicked Holidays • Ready to personalise</span><h2 class="title">Journeys worth taking.</h2></div><p class="lead">Thoughtfully structured itineraries with room to make the trip your own — from quick escapes to once-in-a-lifetime journeys.</p></div><div class="package-grid">
 
 <article class="package-card">
   <div class="package-image">
@@ -318,7 +424,26 @@
   </div>
 </article>
 </div></div></section>
-<section class="section" id="why"><div class="container"><div class="section-head"><div><span class="eyebrow">Why Jhuk Jhuk</span><h2 class="title">Holidays without the headache.</h2></div></div><div class="features"><div class="feature"><div class="feature-icon">🧭</div><h3>Curated Trips</h3><p>Thoughtfully planned itineraries instead of generic copy-paste packages.</p></div><div class="feature"><div class="feature-icon">💰</div><h3>Transparent Pricing</h3><p>Clear package information so you know what you're paying for.</p></div><div class="feature"><div class="feature-icon">🤝</div><h3>Personal Support</h3><p>Real assistance before, during and after your journey.</p></div><div class="feature"><div class="feature-icon">✨</div><h3>Custom Holidays</h3><p>Your dates, budget and travel style — built around you.</p></div></div></div></section>
+<section class="section why-upgrade" id="why"><div class="container">
+  <div class="section-head"><div><span class="eyebrow">Why Jhuk Jhuk</span><h2 class="title">Holidays without the headache.</h2></div><p class="lead">A simple, personal way to go from an idea in your head to a holiday that actually feels like yours.</p></div>
+  <div class="journey-process">
+    <div class="process-line" aria-hidden="true"></div>
+    <article class="process-step"><span class="process-number">01</span><div class="process-icon">🧭</div><h3>Tell us where</h3><p>Share your destination, dates, budget and travel style.</p></article>
+    <article class="process-step"><span class="process-number">02</span><div class="process-icon">✦</div><h3>We shape the journey</h3><p>We build a practical itinerary around the places and experiences you care about.</p></article>
+    <article class="process-step"><span class="process-number">03</span><div class="process-icon">✓</div><h3>You fine-tune it</h3><p>Choose your stays, pace and experiences with clear package information.</p></article>
+    <article class="process-step"><span class="process-number">04</span><div class="process-icon">✈</div><h3>You travel</h3><p>We stay available with personal assistance before, during and after your journey.</p></article>
+  </div>
+  <div class="why-pillars">
+    <span>Curated Trips</span><span>Transparent Pricing</span><span>Personal Support</span><span>Custom Holidays</span>
+  </div>
+</div></section>
+
+<section class="section travel-planning-story" aria-labelledby="planningStoryTitle">
+  <div class="container story-grid">
+    <div class="story-image"><img src="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1500&q=88" alt="Traveller looking across a mountain landscape" loading="lazy"><div class="story-image-caption"><span>THE JHUK JHUK WAY</span><strong>Less template. More you.</strong></div></div>
+    <div class="story-copy"><span class="eyebrow">Your holiday, our homework.</span><h2 class="title" id="planningStoryTitle">We plan the details. You collect the memories.</h2><p>From the first conversation to the final transfer, our role is to make the journey feel considered — not complicated.</p><div class="story-points"><div><b>01</b><span><strong>Good routes</strong><small>Enough to see. Never too much to rush.</small></span></div><div><b>02</b><span><strong>Better stays</strong><small>Location and comfort matter as much as the room.</small></span></div><div><b>03</b><span><strong>Hidden moments</strong><small>The quieter places often become the best stories.</small></span></div></div><button class="btn btn-primary" id="storyPlanBtn" type="button">Plan My Holiday →</button></div>
+  </div>
+</section>
 
 </main>
 
@@ -380,6 +505,7 @@
           <a href="tel:+918806684300">Call Us</a>
           <a href="https://wa.me/918806684300" target="_blank" rel="noopener noreferrer">WhatsApp</a>
           <a href="mailto:contact@jhukjhukholidays.in">Email Us</a>
+          <a href="login.html" class="staff-login-link">Staff Login</a>
           <span class="footer-email">contact@jhukjhukholidays.in</span>
         </div>
       </div>
@@ -404,7 +530,7 @@
 
 
 <div class="destination-modal" id="destinationModal" aria-hidden="true">
-  <div class="destination-modal-shell" role="dialog" aria-modal="true" aria-labelledby="destinationModalTitle">
+  <div class="destination-modal-shell" role="dialog" aria-modal="true" aria-labelledby="destinationModalTitle" aria-describedby="destinationModalDescription">
     <button type="button" class="destination-modal-close" id="destinationModalClose" aria-label="Close">×</button>
 
     <div class="destination-gallery">
@@ -416,6 +542,18 @@
         <img id="destinationImageThree" src="" alt="">
       </div>
     </div>
+
+    <section class="hidden-gems-panel" aria-labelledby="hiddenGemsTitle">
+      <div class="hidden-gems-hero" id="hiddenGemsHero">
+        <div class="hidden-gems-hero-overlay"></div>
+        <div class="hidden-gems-hero-copy">
+          <span class="hidden-gems-kicker">BEYOND THE ITINERARY</span>
+          <h3 id="hiddenGemsTitle">Hidden places worth discovering.</h3>
+          <p id="hiddenGemsIntro">Go beyond the postcard. Discover the quieter corners that can turn a good holiday into a story.</p>
+        </div>
+      </div>
+      <div class="hidden-gems-grid" id="hiddenGemsGrid"></div>
+    </section>
 
     <div class="destination-modal-content">
       <div class="destination-modal-copy">
@@ -437,12 +575,46 @@
   </div>
 </div>
 
+<div class="hidden-gem-detail-modal" id="hiddenGemDetailModal" aria-hidden="true">
+  <div class="hidden-gem-detail-shell" role="dialog" aria-modal="true" aria-labelledby="hiddenGemDetailTitle">
+    <button type="button" class="hidden-gem-detail-close" id="hiddenGemDetailClose" aria-label="Close hidden place details">×</button>
+    <button type="button" class="hidden-gem-detail-nav prev" id="hiddenGemPrev" aria-label="Previous hidden place">‹</button>
+    <button type="button" class="hidden-gem-detail-nav next" id="hiddenGemNext" aria-label="Next hidden place">›</button>
+    <div class="hidden-gem-detail-hero">
+      <img id="hiddenGemDetailHeroImage" src="" alt="">
+      <div class="hidden-gem-detail-hero-shade"></div>
+      <div class="hidden-gem-detail-hero-copy">
+        <span id="hiddenGemDetailKicker">HIDDEN DISCOVERY</span>
+        <h2 id="hiddenGemDetailTitle"></h2>
+        <p id="hiddenGemDetailLocation"></p>
+      </div>
+      <div class="hidden-gem-detail-counter"><b id="hiddenGemDetailCurrent">01</b><span>/</span><span id="hiddenGemDetailTotal">04</span></div>
+    </div>
+    <div class="hidden-gem-detail-body">
+      <div class="hidden-gem-detail-copy">
+        <span class="hidden-gem-detail-label">THE STORY BEYOND THE ITINERARY</span>
+        <p id="hiddenGemDetailDescription"></p>
+      </div>
+      <div class="hidden-gem-detail-gallery" id="hiddenGemDetailGallery"></div>
+      <div class="hidden-gem-detail-footer">
+        <div><small>JHUK JHUK HOLIDAYS</small><strong>Want this hidden gem in your itinerary?</strong></div>
+        <button type="button" class="btn btn-primary" id="hiddenGemDetailPlanBtn">Plan This Experience →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div id="travelContactModal" class="travel-contact-modal" aria-hidden="true">
   <div class="travel-contact-box" role="dialog" aria-modal="true" aria-labelledby="travelContactTitle">
     <button type="button" class="travel-contact-x" id="travelContactClose" aria-label="Close">×</button>
     <img class="popup-brand-logo" src="assets/images/jhuk-jhuk-logo.png" alt="Jhuk Jhuk Holidays">
     <h3 id="travelContactTitle">Talk to a Travel Expert</h3>
     <p>Connect with Jhuk Jhuk Holidays on call or WhatsApp.</p>
+    <div class="travel-enquiry-summary" id="travelEnquirySummary" aria-live="polite">
+      <span class="summary-label">Enquiry details</span>
+      <strong id="travelEnquiryDestination">Flexible trip planning</strong>
+      <small id="travelEnquiryMeta">We’ll help you shape the right itinerary.</small>
+    </div>
 
     <a class="travel-action travel-call" href="tel:+918806684300">
       <span>📞</span>

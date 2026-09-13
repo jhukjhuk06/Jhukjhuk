@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#ffffff">
+<title>Staff Login | Jhuk Jhuk Holidays</title>
+<link rel="icon" href="assets/images/jhuk-jhuk-logo.png">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="login-page">
+<main class="login-shell">
+  <a class="login-back" href="index.html">← Back to Jhuk Jhuk Holidays</a>
+  <section class="login-card" aria-labelledby="loginTitle">
+    <div class="login-brand"><img src="assets/images/jhuk-jhuk-logo.png" alt="Jhuk Jhuk Holidays"></div>
+    <span class="login-kicker">STAFF ACCESS</span>
+    <h1 id="loginTitle">Welcome back.</h1>
+    <p class="login-subtitle">Sign in to access your staff account.</p>
+    <form id="staffLoginForm" novalidate>
+      <label for="loginEmail">Email / Username</label>
+      <input id="loginEmail" name="email" type="text" autocomplete="username" required placeholder="Enter your email or username">
+      <label for="loginPassword">Password</label>
+      <div class="password-wrap"><input id="loginPassword" name="password" type="password" autocomplete="current-password" required placeholder="Enter your password"><button type="button" id="togglePassword" aria-label="Show password">Show</button></div>
+      <button class="login-submit" type="submit" id="loginSubmit">Sign In <span>→</span></button>
+      <div class="login-message" id="loginMessage" role="status" aria-live="polite"></div>
+    </form>
+    <p class="login-note">Authorized staff only. Your account access is protected.</p>
+  </section>
+</main>
+<script src="assets/js/auth.js"></script>
+</body>
+</html>

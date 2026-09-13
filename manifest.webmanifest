@@ -1,0 +1,13 @@
+{
+  "name": "Jhuk Jhuk Holidays",
+  "short_name": "Jhuk Jhuk",
+  "description": "Curated holidays and custom travel planning by Jhuk Jhuk Holidays.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f6f8fc",
+  "theme_color": "#17135a",
+  "icons": [
+    {"src":"assets/images/jhuk-jhuk-logo.png","sizes":"626x192","type":"image/png","purpose":"any maskable"}
+  ]
+}
