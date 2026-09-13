@@ -2237,3 +2237,276 @@ body.modal-open{overflow:hidden}
  .hero-poster-stage .hero-title-top,.hero-poster-stage .hero-script,.hero-poster-stage .hero-script:after{animation:none!important}
  .hero-poster-stage .hero-script{background-position:50% 50%!important}
 }
+
+/* =========================================================
+   V42 — HOMEPAGE COMPOSITION FIX / REFERENCE-MATCHED LAYOUT
+   Keep functionality; refine only visual hierarchy and alignment.
+========================================================= */
+.hero-poster-stage{
+  min-height:820px!important;
+  height:820px!important;
+  padding:0!important;
+  overflow:hidden!important;
+  background:#020b1d!important;
+}
+
+/* Remove the duplicate editorial line created by the earlier visual layer.
+   The real .hero-kicker remains and is the single source of this text. */
+.hero-poster-stage .hero-poster-backdrop:before{display:none!important}
+
+/* One clean, centered headline block — never allow the brand phrase to wrap. */
+.hero-poster-stage .hero-container{
+  position:absolute!important;
+  inset:0!important;
+  min-height:0!important;
+  height:100%!important;
+  display:block!important;
+  padding:0!important;
+  pointer-events:none!important;
+  z-index:20!important;
+}
+.hero-poster-stage .hero-content{
+  position:absolute!important;
+  top:72px!important;
+  left:50%!important;
+  transform:translateX(-50%)!important;
+  width:min(1180px,92vw)!important;
+  max-width:none!important;
+  padding:0!important;
+  margin:0!important;
+  text-align:center!important;
+  pointer-events:auto!important;
+}
+.hero-poster-stage .hero-brand-tagline,
+.hero-poster-stage .hero-content>p,
+.hero-poster-stage .hero-buttons{display:none!important}
+.hero-poster-stage .hero-kicker{
+  margin:0 0 13px!important;
+  font-size:10px!important;
+  line-height:1.2!important;
+  letter-spacing:4px!important;
+  color:rgba(255,255,255,.82)!important;
+  text-shadow:0 3px 18px rgba(0,0,0,.55)!important;
+}
+.hero-poster-stage .hero-destinations-title{
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  justify-content:center!important;
+  width:100%!important;
+  margin:0!important;
+  padding:0!important;
+  gap:0!important;
+  white-space:nowrap!important;
+  line-height:.9!important;
+}
+.hero-poster-stage .hero-title-top{
+  display:block!important;
+  white-space:nowrap!important;
+  font-family:Montserrat,Arial,sans-serif!important;
+  font-size:clamp(54px,5.35vw,82px)!important;
+  line-height:.92!important;
+  letter-spacing:2px!important;
+  font-weight:900!important;
+  color:#fff!important;
+  text-shadow:0 5px 28px rgba(0,0,0,.58)!important;
+}
+.hero-poster-stage .hero-script{
+  display:block!important;
+  white-space:nowrap!important;
+  margin:4px 0 0!important;
+  font-family:'Kaushan Script','Brush Script MT',cursive!important;
+  font-size:clamp(58px,6.5vw,98px)!important;
+  line-height:.9!important;
+  letter-spacing:-1px!important;
+  font-weight:400!important;
+  background:linear-gradient(105deg,#4fe3d5 0%,#17d8ef 24%,#ffffff 43%,#9a61eb 68%,#7937c8 83%,#50dfd4 100%)!important;
+  background-size:260% 100%!important;
+  -webkit-background-clip:text!important;
+  background-clip:text!important;
+  color:transparent!important;
+  -webkit-text-fill-color:transparent!important;
+  filter:drop-shadow(0 7px 18px rgba(18,217,239,.2)) drop-shadow(0 0 24px rgba(121,55,200,.14))!important;
+  animation:jjBrandGradient 5.5s ease-in-out infinite, jjHeadlineReveal 1.05s .12s cubic-bezier(.2,.8,.2,1) both!important;
+}
+.hero-poster-stage .hero-script:after{
+  width:240px!important;
+  max-width:42%!important;
+  height:3px!important;
+  margin:14px auto 0!important;
+  background:linear-gradient(90deg,transparent,#18d9ef 20%,#54e0d5 42%,#8d55df 72%,#7937c8 84%,transparent)!important;
+  box-shadow:0 0 14px rgba(24,217,239,.48),0 0 25px rgba(121,55,200,.24)!important;
+}
+
+/* Dynamic destination environment: blend the scenes into one continuous canvas. */
+.hero-cinematic-photo{
+  opacity:.72!important;
+  filter:saturate(1.16) contrast(1.04) brightness(.88)!important;
+  -webkit-mask-image:radial-gradient(ellipse at center,rgba(0,0,0,1) 35%,rgba(0,0,0,.82) 62%,transparent 96%)!important;
+  mask-image:radial-gradient(ellipse at center,rgba(0,0,0,1) 35%,rgba(0,0,0,.82) 62%,transparent 96%)!important;
+}
+.hero-cinematic-kashmir{-webkit-mask-image:linear-gradient(90deg,#000 0%,#000 66%,transparent 100%)!important;mask-image:linear-gradient(90deg,#000 0%,#000 66%,transparent 100%)!important}
+.hero-cinematic-rajasthan{-webkit-mask-image:linear-gradient(90deg,#000 0%,#000 58%,transparent 100%)!important;mask-image:linear-gradient(90deg,#000 0%,#000 58%,transparent 100%)!important}
+.hero-cinematic-dubai{-webkit-mask-image:linear-gradient(270deg,#000 0%,#000 64%,transparent 100%)!important;mask-image:linear-gradient(270deg,#000 0%,#000 64%,transparent 100%)!important}
+.hero-cinematic-bali{-webkit-mask-image:linear-gradient(270deg,#000 0%,#000 58%,transparent 100%)!important;mask-image:linear-gradient(270deg,#000 0%,#000 58%,transparent 100%)!important}
+.hero-cinematic-maldives{-webkit-mask-image:radial-gradient(ellipse at center,#000 25%,rgba(0,0,0,.6) 65%,transparent 100%)!important;mask-image:radial-gradient(ellipse at center,#000 25%,rgba(0,0,0,.6) 65%,transparent 100%)!important}
+.hero-cinematic-bg:after{
+  background:
+    radial-gradient(ellipse at 50% 47%,rgba(15,91,125,.02) 0%,rgba(2,8,23,.04) 34%,rgba(2,8,23,.54) 78%,rgba(2,8,23,.86) 100%),
+    linear-gradient(180deg,rgba(2,8,23,.02) 0%,rgba(2,8,23,.04) 54%,rgba(2,8,23,.62) 88%,rgba(2,8,23,.9) 100%)!important;
+}
+.hero-cinematic-earth{
+  width:min(1180px,94vw)!important;
+  bottom:-47%!important;
+  opacity:1!important;
+  box-shadow:0 -18px 100px rgba(48,190,242,.3),0 0 150px rgba(41,151,218,.12),inset 0 15px 55px rgba(72,215,255,.13)!important;
+}
+
+/* Destination cards sit in one clean row below the headline. */
+.hero-poster-stage .poster-carousel{
+  top:64%!important;
+  height:410px!important;
+  z-index:14!important;
+}
+.hero-poster-stage .poster-card{
+  width:270px!important;
+  height:350px!important;
+  min-height:0!important;
+  border-radius:22px!important;
+}
+.hero-poster-stage .poster-card.is-active{
+  width:330px!important;
+  height:390px!important;
+  transform:translate(-50%,-50%) translateX(0) scale(1)!important;
+  box-shadow:0 30px 80px rgba(0,0,0,.62),0 0 38px rgba(54,184,194,.32),0 0 24px rgba(121,55,200,.18)!important;
+}
+.hero-poster-stage .poster-card.is-left{
+  transform:translate(-50%,-50%) translateX(-30vw) scale(.88) rotateY(13deg)!important;
+  opacity:.9!important;
+}
+.hero-poster-stage .poster-card.is-right{
+  transform:translate(-50%,-50%) translateX(30vw) scale(.88) rotateY(-13deg)!important;
+  opacity:.9!important;
+}
+.hero-poster-stage .poster-card.is-far-left{
+  transform:translate(-50%,-50%) translateX(-52vw) scale(.68) rotateY(19deg)!important;
+  opacity:.48!important;
+}
+.hero-poster-stage .poster-card.is-far-right{
+  transform:translate(-50%,-50%) translateX(52vw) scale(.68) rotateY(-19deg)!important;
+  opacity:.48!important;
+}
+.hero-poster-stage .poster-arrow{top:64%!important;z-index:22!important}
+.hero-poster-stage .poster-prev{left:30px!important}.hero-poster-stage .poster-next{right:30px!important}
+
+.hero-benefits{
+  bottom:40px!important;
+  width:min(980px,90%)!important;
+  gap:24px!important;
+  z-index:28!important;
+}
+.hero-benefits b{font-size:26px!important}
+.hero-benefits strong{font-size:11px!important}
+.hero-benefits small{font-size:8px!important}
+.hero-scroll-cue{bottom:10px!important;display:none!important}
+.hero-collect-note{right:30px!important;bottom:52px!important;z-index:29!important}
+
+@media(max-width:1100px){
+  .hero-poster-stage{height:800px!important;min-height:800px!important}
+  .hero-poster-stage .hero-content{top:64px!important}
+  .hero-poster-stage .hero-title-top{font-size:clamp(48px,6vw,68px)!important}
+  .hero-poster-stage .hero-script{font-size:clamp(54px,7vw,82px)!important}
+  .hero-poster-stage .poster-carousel{top:65%!important}
+  .hero-poster-stage .poster-arrow{top:65%!important}
+  .hero-poster-stage .poster-card{width:245px!important;height:320px!important}
+  .hero-poster-stage .poster-card.is-active{width:295px!important;height:355px!important}
+}
+@media(max-width:760px){
+  .hero-poster-stage{height:760px!important;min-height:760px!important}
+  .hero-poster-stage .hero-content{top:52px!important;width:96vw!important}
+  .hero-poster-stage .hero-kicker{font-size:7px!important;letter-spacing:2.2px!important}
+  .hero-poster-stage .hero-title-top{font-size:clamp(34px,9.5vw,52px)!important;letter-spacing:1px!important}
+  .hero-poster-stage .hero-script{font-size:clamp(44px,12.5vw,68px)!important}
+  .hero-poster-stage .poster-carousel{top:66%!important;height:300px!important}
+  .hero-poster-stage .poster-card{width:190px!important;height:250px!important}
+  .hero-poster-stage .poster-card.is-active{width:230px!important;height:285px!important}
+  .hero-poster-stage .poster-card.is-left{transform:translate(-50%,-50%) translateX(-43vw) scale(.72) rotateY(10deg)!important}
+  .hero-poster-stage .poster-card.is-right{transform:translate(-50%,-50%) translateX(43vw) scale(.72) rotateY(-10deg)!important}
+  .hero-poster-stage .poster-card.is-far-left,.hero-poster-stage .poster-card.is-far-right{opacity:0!important}
+  .hero-poster-stage .poster-arrow{top:66%!important;width:44px!important;height:44px!important}
+  .hero-poster-stage .poster-prev{left:8px!important}.hero-poster-stage .poster-next{right:8px!important}
+  .hero-benefits{grid-template-columns:repeat(2,1fr)!important;bottom:24px!important;gap:9px 14px!important}
+  .hero-collect-note{display:none!important}
+}
+@media(max-width:500px){
+  .hero-poster-stage{height:735px!important;min-height:735px!important}
+  .hero-poster-stage .hero-content{top:46px!important}
+  .hero-poster-stage .hero-script{font-size:clamp(40px,12vw,60px)!important}
+  .hero-poster-stage .poster-carousel{top:65%!important}
+  .hero-poster-stage .poster-card{width:170px!important;height:225px!important}
+  .hero-poster-stage .poster-card.is-active{width:210px!important;height:260px!important}
+  .hero-poster-stage .poster-arrow{top:65%!important}
+}
+
+/* V43 - reference-matched hero refinement */
+.hero-poster-stage{min-height:820px!important;height:820px!important;overflow:hidden!important}
+.hero-poster-stage .hero-poster-backdrop{inset:0!important}
+/* Keep the brand headline as the sole hero message, with clean breathing room. */
+.hero-poster-stage .hero-brand-tagline,
+.hero-poster-stage .hero-kicker,
+.hero-poster-stage .hero-content>p,
+.hero-poster-stage .hero-buttons{display:none!important}
+.hero-poster-stage .hero-content{top:78px!important;max-width:none!important;width:100%!important;padding:0 24px!important;z-index:18!important}
+.hero-poster-stage .hero-destinations-title{display:block!important;margin:0 auto!important;white-space:nowrap!important;line-height:.96!important}
+.hero-poster-stage .hero-title-top{display:inline-block!important;font-size:clamp(28px,3.25vw,54px)!important;letter-spacing:1.5px!important;font-weight:900!important;vertical-align:baseline!important;color:#fff!important;text-shadow:0 8px 30px rgba(0,0,0,.58)!important}
+.hero-poster-stage .hero-script{display:inline-block!important;font-size:clamp(38px,4.65vw,76px)!important;letter-spacing:-1.5px!important;vertical-align:baseline!important;margin-left:12px!important;line-height:.9!important;font-family:'Kaushan Script','Brush Script MT',cursive!important;background:linear-gradient(100deg,#1bd9e8 0%,#62e5dc 26%,#ffffff 48%,#a86cf0 74%,#6f35d0 100%)!important;background-size:240% 100%!important;-webkit-background-clip:text!important;background-clip:text!important;color:transparent!important;animation:jjBrandGradient 6s ease-in-out infinite!important;filter:drop-shadow(0 7px 20px rgba(32,218,239,.22))!important}
+.hero-poster-stage .hero-script:after{display:none!important}
+/* High-quality, edge-to-edge environment. */
+.hero-cinematic-photo{background-size:cover!important;filter:saturate(1.2) contrast(1.06) brightness(.94)!important}
+.hero-cinematic-kashmir{background-image:url('https://images.unsplash.com/photo-1595815771614-ade9d652a65d?auto=format&fit=crop&w=2400&q=95')!important}
+.hero-cinematic-rajasthan{background-image:url('https://images.unsplash.com/photo-1599661046289-e31897846e41?auto=format&fit=crop&w=2400&q=95')!important}
+.hero-cinematic-dubai{background-image:url('https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&w=2400&q=95')!important}
+.hero-cinematic-bali{background-image:url('https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=2400&q=95')!important}
+.hero-cinematic-maldives{background-image:url('https://images.unsplash.com/photo-1514282401047-d79a71a590e8?auto=format&fit=crop&w=2400&q=95')!important}
+.hero-cinematic-bg:after{background:radial-gradient(ellipse at 50% 38%,rgba(2,12,31,.02) 0%,rgba(2,8,23,.10) 48%,rgba(2,8,23,.58) 100%),linear-gradient(180deg,rgba(2,8,23,.03) 0%,rgba(2,8,23,.02) 45%,rgba(2,8,23,.58) 100%)!important}
+/* Reference composition: large, wider cards in a five-card spread. */
+.hero-poster-stage .poster-carousel{top:69%!important;height:430px!important;perspective:1500px!important}
+.hero-poster-stage .poster-card{width:310px!important;height:355px!important;border-radius:22px!important}
+.hero-poster-stage .poster-card.is-active{width:350px!important;height:385px!important;transform:translate(-50%,-50%) translateX(0) scale(1)!important}
+.hero-poster-stage .poster-card.is-left{transform:translate(-50%,-50%) translateX(-28vw) scale(.93) rotateY(9deg)!important;opacity:.96!important}
+.hero-poster-stage .poster-card.is-right{transform:translate(-50%,-50%) translateX(28vw) scale(.93) rotateY(-9deg)!important;opacity:.96!important}
+.hero-poster-stage .poster-card.is-far-left{transform:translate(-50%,-50%) translateX(-50vw) scale(.80) rotateY(13deg)!important;opacity:.72!important}
+.hero-poster-stage .poster-card.is-far-right{transform:translate(-50%,-50%) translateX(50vw) scale(.80) rotateY(-13deg)!important;opacity:.72!important}
+.hero-poster-stage .poster-arrow{top:69%!important;width:54px!important;height:54px!important}
+.hero-poster-stage .poster-prev{left:24px!important}.hero-poster-stage .poster-next{right:24px!important}
+.hero-poster-stage .poster-copy{bottom:24px!important}.hero-poster-stage .poster-copy strong{font-size:clamp(24px,2.7vw,38px)!important}
+.hero-benefits{bottom:30px!important;z-index:30!important}
+.hero-collect-note{bottom:26px!important;right:28px!important;z-index:31!important}
+
+@media(max-width:1100px){
+ .hero-poster-stage{height:800px!important;min-height:800px!important}
+ .hero-poster-stage .hero-content{top:70px!important}
+ .hero-poster-stage .hero-title-top{font-size:clamp(24px,3.8vw,42px)!important}
+ .hero-poster-stage .hero-script{font-size:clamp(32px,5vw,58px)!important}
+ .hero-poster-stage .poster-carousel{top:69%!important}
+ .hero-poster-stage .poster-card{width:270px!important;height:325px!important}
+ .hero-poster-stage .poster-card.is-active{width:315px!important;height:355px!important}
+}
+@media(max-width:760px){
+ .hero-poster-stage{height:760px!important;min-height:760px!important}
+ .hero-poster-stage .hero-content{top:54px!important;padding:0 12px!important}
+ .hero-poster-stage .hero-destinations-title{white-space:normal!important}
+ .hero-poster-stage .hero-title-top{font-size:clamp(24px,7.5vw,40px)!important}
+ .hero-poster-stage .hero-script{font-size:clamp(34px,10.5vw,58px)!important;margin-left:7px!important}
+ .hero-poster-stage .poster-carousel{top:68%!important;height:330px!important}
+ .hero-poster-stage .poster-card{width:210px!important;height:275px!important}
+ .hero-poster-stage .poster-card.is-active{width:245px!important;height:305px!important}
+ .hero-poster-stage .poster-card.is-left{transform:translate(-50%,-50%) translateX(-52vw) scale(.72) rotateY(8deg)!important}
+ .hero-poster-stage .poster-card.is-right{transform:translate(-50%,-50%) translateX(52vw) scale(.72) rotateY(-8deg)!important}
+ .hero-poster-stage .poster-card.is-far-left,.hero-poster-stage .poster-card.is-far-right{opacity:0!important}
+ .hero-poster-stage .poster-arrow{top:68%!important;width:44px!important;height:44px!important}
+ .hero-poster-stage .poster-prev{left:8px!important}.hero-poster-stage .poster-next{right:8px!important}
+ .hero-benefits{bottom:18px!important;gap:8px!important}
+ .hero-collect-note{display:none!important}
+}
+@media(prefers-reduced-motion:reduce){.hero-poster-stage .hero-script{animation:none!important}}
