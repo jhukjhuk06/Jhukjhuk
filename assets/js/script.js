@@ -30,7 +30,14 @@ document.addEventListener("DOMContentLoaded", () => {
       intro.classList.add("done");
       body.classList.remove("locked");
     };
-    const introDelay = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? 450 : 3150;
+    const introDelay = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? 450 : 10000;
+    const introVideo = document.getElementById("introCinematicVideo");
+    if (introVideo) {
+      introVideo.currentTime = 0;
+      const playIntroVideo = () => introVideo.play().catch(() => {});
+      playIntroVideo();
+      document.addEventListener("visibilitychange", () => { if (!document.hidden) playIntroVideo(); }, { passive: true });
+    }
     const introTimer = window.setTimeout(finishIntro, introDelay);
     document.getElementById("introSkip")?.addEventListener("click", () => {
       window.clearTimeout(introTimer);
@@ -128,7 +135,8 @@ const packageDetails={
     const month = document.querySelector('#holidaySearch input[type="month"]')?.value || "";
     const travellers = document.getElementById("travellers")?.value || "";
     const budget = document.getElementById("budget")?.value || "";
-    return { destination: destinationInput?.value.trim() || "", month, travellers, budget };
+    const tripStyle = document.getElementById("tripStyle")?.value || "";
+    return { destination: destinationInput?.value.trim() || "", month, travellers, budget, tripStyle };
   }
 
   function monthLabel(value) {
@@ -148,6 +156,7 @@ const packageDetails={
       details.month ? `Travel month: ${monthLabel(details.month)}` : "",
       details.travellers ? `Travellers: ${details.travellers}` : "",
       details.budget && details.budget !== "Any Budget" ? `Budget: ${details.budget}` : "",
+      details.tripStyle && details.tripStyle !== "Any Style" ? `Trip style: ${details.tripStyle}` : "",
       "Please share the best options and details."
     ].filter(Boolean);
     return `https://wa.me/918806684300?text=${encodeURIComponent(lines.join("\n"))}`;
@@ -161,7 +170,7 @@ const packageDetails={
     if (travelContactTitle) travelContactTitle.textContent = label ? `Let's plan ${label}` : "Talk to a Travel Expert";
     if (travelEnquiryDestination) travelEnquiryDestination.textContent = label || "Flexible trip planning";
     if (travelEnquiryMeta) {
-      const meta = [details.month ? monthLabel(details.month) : "Flexible dates", details.travellers || "Traveller count flexible", details.budget && details.budget !== "Any Budget" ? details.budget : "Budget flexible"].join(" • ");
+      const meta = [details.month ? monthLabel(details.month) : "Flexible dates", details.travellers || "Traveller count flexible", details.budget && details.budget !== "Any Budget" ? details.budget : "Budget flexible", details.tripStyle && details.tripStyle !== "Any Style" ? details.tripStyle : "Any travel style"].join(" • ");
       travelEnquiryMeta.textContent = meta;
     }
     if (whatsappLink) whatsappLink.href = buildWhatsAppUrl(context);
@@ -505,6 +514,46 @@ const hiddenGemDetails = {"Kerala":{"Kanthalloor":"A misty highland village abou
     }
   });
 
+
+
+  // V44 destination + package filters: lightweight client-side filtering, no backend required.
+  const destinationFilterButtons = document.querySelectorAll(".explorer-filter");
+  const destinationCards = document.querySelectorAll(".destination[data-place]");
+  destinationFilterButtons.forEach(button => {
+    button.addEventListener("click", () => {
+      const filter = button.dataset.filter || "all";
+      destinationFilterButtons.forEach(b => {
+        const active = b === button;
+        b.classList.toggle("is-active", active);
+        b.setAttribute("aria-pressed", String(active));
+      });
+      destinationCards.forEach(card => {
+        const show = filter === "all" || card.dataset.category === filter;
+        card.classList.toggle("is-filter-hidden", !show);
+      });
+    });
+  });
+
+  const packageFilterButtons = document.querySelectorAll(".package-filter");
+  const packageCards = document.querySelectorAll(".package-card[data-package-category]");
+  const packageCount = document.getElementById("packageCount");
+  packageFilterButtons.forEach(button => {
+    button.addEventListener("click", () => {
+      const filter = button.dataset.packageFilter || "all";
+      let visible = 0;
+      packageFilterButtons.forEach(b => b.classList.toggle("is-active", b === button));
+      packageCards.forEach(card => {
+        const show = filter === "all" || card.dataset.packageCategory === filter;
+        card.classList.toggle("is-filter-hidden", !show);
+        if (show) visible++;
+      });
+      if (packageCount) packageCount.textContent = `${visible} curated ${visible === 1 ? "journey" : "journeys"}`;
+    });
+  });
+
+  document.getElementById("mobilePlanBtn")?.addEventListener("click", () => {
+    planner();
+  });
 
   // V25 cinematic foreground poster carousel: random order + random motion.
   const posterCarousel = document.getElementById("posterCarousel");
