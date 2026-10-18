@@ -1,0 +1,21 @@
+JHUK JHUK HOLIDAYS — V53 SEAMLESS FLOW REFINEMENT
+Baseline: V53 Premium Final QA. The approved visual composition and content remain intact.
+
+Reference principles studied from the official HONOR Global website (https://www.honor.com/global/):
+- Clear, predictable primary navigation and grouped paths to content.
+- Strong visual hierarchy and focused calls to action.
+- Reusable interaction patterns across category sections.
+Adapted to travel discovery without copying HONOR branding or product-specific UI.
+
+Surgical changes:
+- Fixed mobile navigation visibility conflict caused by a later display:none!important rule.
+- Mobile menu remains slide-down style and now has visible/interactive states.
+- Menu closes after choosing a link, pressing Escape, or clicking outside.
+- aria-expanded stays synchronized with menu visibility.
+- Added scroll offset for fixed navigation so section headings are not hidden behind the header.
+- Standardized keyboard focus visibility.
+- Preserved V53 cinematic hero, card geometry, sections, package/destination content, branding, and enquiry flows.
+- Service-worker cache version advanced to jjh-shell-v27.
+
+Validation performed: JavaScript syntax check, HTML parser and duplicate-ID check, ZIP integrity check.
+External image/video/font loading and real-browser responsive rendering still require a live browser/device test.

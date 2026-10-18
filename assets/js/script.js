@@ -95,14 +95,26 @@ document.addEventListener("DOMContentLoaded", () => {
     window.setTimeout(() => destinationInput?.focus(), 450);
   }
 
+  const closeMobileNav = () => {
+    nav?.classList.remove("active");
+    menu?.setAttribute("aria-expanded", "false");
+  };
   menu?.addEventListener("click", () => {
     const open = nav?.classList.toggle("active");
     menu.setAttribute("aria-expanded", String(Boolean(open)));
   });
-  nav?.querySelectorAll("a").forEach(a => a.addEventListener("click", () => {
-    nav.classList.remove("active");
-    menu?.setAttribute("aria-expanded", "false");
-  }));
+  nav?.querySelectorAll("a").forEach(a => a.addEventListener("click", closeMobileNav));
+  document.addEventListener("keydown", event => {
+    if (event.key === "Escape" && nav?.classList.contains("active")) {
+      closeMobileNav();
+      menu?.focus();
+    }
+  });
+  document.addEventListener("click", event => {
+    if (!nav?.classList.contains("active")) return;
+    if (nav.contains(event.target) || menu?.contains(event.target)) return;
+    closeMobileNav();
+  });
 
   document.getElementById("planTrip")?.addEventListener("click", () => planner());
   document.getElementById("customTrip")?.addEventListener("click", () => planner());
@@ -537,19 +549,40 @@ const hiddenGemDetails = {"Kerala":{"Kanthalloor":"A misty highland village abou
   const packageFilterButtons = document.querySelectorAll(".package-filter");
   const packageCards = document.querySelectorAll(".package-card[data-package-category]");
   const packageCount = document.getElementById("packageCount");
+  const packageDurationFilter = document.getElementById("packageDurationFilter");
+  const packageBudgetFilter = document.getElementById("packageBudgetFilter");
+  let activePackageCategory = "all";
+  function applyPackageFilters() {
+    const duration = packageDurationFilter?.value || "all";
+    const budget = packageBudgetFilter?.value || "all";
+    let visible = 0;
+    packageCards.forEach(card => {
+      const days = Number(card.dataset.durationDays || 0);
+      const price = Number(card.dataset.price || 0);
+      const categoryMatch = activePackageCategory === "all" || card.dataset.packageCategory === activePackageCategory;
+      const durationMatch = duration === "all" || (duration === "short" && days > 0 && days <= 5) || (duration === "week" && days >= 6 && days <= 7) || (duration === "long" && days >= 8);
+      const budgetMatch = budget === "all" || (budget === "under20" && price > 0 && price < 20000) || (budget === "20to40" && price >= 20000 && price <= 40000) || (budget === "40plus" && price > 40000);
+      const show = categoryMatch && durationMatch && budgetMatch;
+      card.classList.toggle("is-filter-hidden", !show);
+      if (show) visible++;
+    });
+    if (packageCount) packageCount.textContent = `${visible} curated ${visible === 1 ? "journey" : "journeys"}`;
+  }
   packageFilterButtons.forEach(button => {
+    button.setAttribute("aria-pressed", String(button.classList.contains("is-active")));
     button.addEventListener("click", () => {
-      const filter = button.dataset.packageFilter || "all";
-      let visible = 0;
-      packageFilterButtons.forEach(b => b.classList.toggle("is-active", b === button));
-      packageCards.forEach(card => {
-        const show = filter === "all" || card.dataset.packageCategory === filter;
-        card.classList.toggle("is-filter-hidden", !show);
-        if (show) visible++;
+      activePackageCategory = button.dataset.packageFilter || "all";
+      packageFilterButtons.forEach(b => {
+        const active = b === button;
+        b.classList.toggle("is-active", active);
+        b.setAttribute("aria-pressed", String(active));
       });
-      if (packageCount) packageCount.textContent = `${visible} curated ${visible === 1 ? "journey" : "journeys"}`;
+      applyPackageFilters();
     });
   });
+  packageDurationFilter?.addEventListener("change", applyPackageFilters);
+  packageBudgetFilter?.addEventListener("change", applyPackageFilters);
+  applyPackageFilters();
 
   document.getElementById("mobilePlanBtn")?.addEventListener("click", () => {
     planner();
@@ -602,17 +635,26 @@ const hiddenGemDetails = {"Kerala":{"Kanthalloor":"A misty highland village abou
     posterCards.forEach((card, i) => {
       const video = card.querySelector(".poster-media");
       if (!video) return;
-      if (i === posterIndex && !posterPaused) {
-        // Muted + playsinline + autoplay allows browsers to start the cinematic layer
-        // without requiring a user gesture. Restart from the beginning on every shuffle.
-        try { video.currentTime = 0; } catch (_) {}
+      const active = i === posterIndex && !posterPaused && !document.hidden;
+      // Keep inactive clips unloaded: downloading seven videos at once causes slow starts,
+      // excess mobile data use, and unnecessary memory pressure.
+      video.preload = active ? "metadata" : "none";
+      if (active) {
         video.muted = true;
         video.playsInline = true;
-        const playPromise = video.play();
-        if (playPromise && typeof playPromise.catch === "function") playPromise.catch(() => {});
+        if (video.readyState === 0) video.load();
+        const start = () => {
+          if (i !== posterIndex || posterPaused || document.hidden) return;
+          try { video.currentTime = 0; } catch (_) {}
+          const playPromise = video.play();
+          if (playPromise && typeof playPromise.catch === "function") playPromise.catch(() => {});
+        };
+        if (video.readyState >= 2) start();
+        else video.addEventListener("loadeddata", start, { once: true });
       } else {
         video.pause();
-        try { video.currentTime = 0; } catch (_) {}
+        // Do not seek unloaded media: some browsers can trigger needless network work.
+        if (video.readyState > 0) { try { video.currentTime = 0; } catch (_) {} }
       }
     });
   }

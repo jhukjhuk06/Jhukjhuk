@@ -1,0 +1,23 @@
+JHUK JHUK HOLIDAYS — V53 STABLE PERFORMANCE PASS
+
+BASELINE / DESIGN GUARANTEE
+- Built from the original V53 IMMERSIVE_CINEMATIC_CARD archive.
+- Existing visual design, page structure, card proportions, colors, typography, animations, destinations, package content, modal/enquiry flows, and responsive CSS were intentionally preserved.
+- No broad redesign, HTML restructuring, CSS minification, or image replacement was performed.
+
+CHANGES
+1. Cinematic carousel video loading is now demand-driven: only the active clip is loaded/played; inactive clips are paused and marked preload=none.
+2. Video playback checks visibility and active state before starting, reducing unnecessary background work.
+3. Added connection hints for the existing Google Fonts, Unsplash image, and Mixkit video origins.
+4. Added asynchronous image decoding and high fetch priority to the first cinematic fallback image; other carousel fallback images are lazy-loaded.
+5. Hardened service worker cache handling: versioned cache v26, removes only old Jhuk Jhuk shell caches (not unrelated site caches), avoids caching failed responses, and uses the cached index only as an offline navigation fallback.
+6. Cached the exact logo asset used by the intro as part of the shell.
+
+VALIDATION
+- JavaScript syntax checked with Node.js.
+- Service worker syntax checked with Node.js.
+- HTML parsed with Python HTMLParser.
+- Duplicate IDs, image alt coverage, lazy image coverage, and local file references audited.
+
+LIMITATION
+- External CDN playback and real device/browser rendering cannot be fully certified from this static bundle check. Test once in Chrome desktop and a real mobile browser after deployment, especially autoplay fallback and service-worker refresh.
