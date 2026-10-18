@@ -30,13 +30,26 @@ document.addEventListener("DOMContentLoaded", () => {
       intro.classList.add("done");
       body.classList.remove("locked");
     };
-    const introDelay = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? 450 : 10000;
+    const mobileOrConstrained = window.matchMedia("(max-width: 760px), (prefers-reduced-motion: reduce), (prefers-reduced-data: reduce)").matches || navigator.connection?.saveData === true;
+    // Mobile: avoid a 10-second blocking intro and avoid downloading/decoding a full-screen video.
+    const introDelay = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? 450 : (mobileOrConstrained ? 2600 : 10000);
     const introVideo = document.getElementById("introCinematicVideo");
     if (introVideo) {
-      introVideo.currentTime = 0;
-      const playIntroVideo = () => introVideo.play().catch(() => {});
-      playIntroVideo();
-      document.addEventListener("visibilitychange", () => { if (!document.hidden) playIntroVideo(); }, { passive: true });
+      if (mobileOrConstrained) {
+        introVideo.pause();
+        introVideo.removeAttribute("autoplay");
+        introVideo.preload = "none";
+        introVideo.removeAttribute("src");
+        introVideo.querySelectorAll("source").forEach(source => source.removeAttribute("src"));
+        introVideo.load();
+      } else {
+        introVideo.preload = "metadata";
+        const playIntroVideo = () => { if (!document.hidden) introVideo.play().catch(() => {}); };
+        playIntroVideo();
+        document.addEventListener("visibilitychange", () => {
+          if (document.hidden) introVideo.pause(); else playIntroVideo();
+        }, { passive: true });
+      }
     }
     const introTimer = window.setTimeout(finishIntro, introDelay);
     document.getElementById("introSkip")?.addEventListener("click", () => {
@@ -191,6 +204,56 @@ const packageDetails={
   }
 
   function closeTravelContact() { closeModal(travelContactModal); }
+
+  // Interactive travel-style chooser: selecting a mood fills the planner and confirms the choice.
+  const styleCards = Array.from(document.querySelectorAll(".style-card[data-style-filter]"));
+  const tripStyleSelect = document.getElementById("tripStyle");
+  const plannerNote = document.getElementById("plannerNote");
+  const styleMessages = {
+    "Couple / Honeymoon": "Romantic escape selected 💜 Add a destination and we’ll shape a trip for two.",
+    "Family": "Family time selected ✨ Let’s find a journey everyone can enjoy.",
+    "Adventure": "Adventure mode: ON 🧭 Choose a destination and let’s go beyond ordinary.",
+    "Luxury": "A little more extraordinary ✦ Luxury travel selected.",
+    "Relaxation": "Slow down and breathe 🌿 Relaxation selected; we’ll keep the pace easy.",
+    "Friends": "Friends & group trip selected 🎉 Let’s make room for more stories."
+  };
+  styleCards.forEach(card => {
+    const value = card.dataset.styleFilter;
+    card.setAttribute("aria-pressed", "false");
+    card.addEventListener("click", () => {
+      styleCards.forEach(other => {
+        const selected = other === card;
+        other.classList.toggle("is-selected", selected);
+        other.setAttribute("aria-pressed", String(selected));
+      });
+      if (tripStyleSelect) {
+        const option = Array.from(tripStyleSelect.options).find(item => item.value === value || item.textContent.trim() === value);
+        if (option) tripStyleSelect.value = option.value || option.textContent;
+      }
+      if (plannerNote) {
+        plannerNote.classList.add("has-style");
+        const sparkle = document.createElement("span");
+        sparkle.setAttribute("aria-hidden", "true");
+        sparkle.textContent = "✦";
+        plannerNote.replaceChildren(sparkle, document.createTextNode(" " + (styleMessages[value] || `${value} selected. Add a destination and let’s plan your trip.`)));
+      }
+    });
+  });
+  tripStyleSelect?.addEventListener("change", () => {
+    const current = tripStyleSelect.value;
+    styleCards.forEach(card => {
+      const matches = card.dataset.styleFilter === current || (current === "Friends" && card.dataset.styleFilter === "Friends");
+      card.classList.toggle("is-selected", matches);
+      card.setAttribute("aria-pressed", String(matches));
+    });
+    if (plannerNote && styleMessages[current]) {
+      plannerNote.classList.add("has-style");
+      const sparkle = document.createElement("span");
+      sparkle.setAttribute("aria-hidden", "true");
+      sparkle.textContent = "✦";
+      plannerNote.replaceChildren(sparkle, document.createTextNode(" " + styleMessages[current]));
+    }
+  });
 
   holidaySearch?.addEventListener("submit", event => {
     event.preventDefault();
@@ -600,6 +663,7 @@ const hiddenGemDetails = {"Kerala":{"Kanthalloor":"A misty highland village abou
   let posterPaused = false;
   let posterLastIndex = -1;
   const posterReducedMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)")?.matches;
+  const posterMobileMode = window.matchMedia?.("(max-width: 760px), (prefers-reduced-motion: reduce), (prefers-reduced-data: reduce)")?.matches || navigator.connection?.saveData === true;
   const posterMotionClasses = ["motion-zoom", "motion-pan-left", "motion-pan-right", "motion-lift", "motion-breathe"];
   const posterEasings = ["cubic-bezier(.18,.78,.18,1)", "cubic-bezier(.2,.62,.25,1)", "cubic-bezier(.35,.05,.15,1)", "cubic-bezier(.12,.9,.2,1)"];
 
@@ -635,7 +699,17 @@ const hiddenGemDetails = {"Kerala":{"Kanthalloor":"A misty highland village abou
     posterCards.forEach((card, i) => {
       const video = card.querySelector(".poster-media");
       if (!video) return;
-      const active = i === posterIndex && !posterPaused && !document.hidden;
+      const active = !posterMobileMode && i === posterIndex && !posterPaused && !document.hidden;
+      // Mobile uses the already-present poster image instead of decoding large video frames.
+      if (posterMobileMode) {
+        video.pause();
+        video.preload = "none";
+        video.removeAttribute("autoplay");
+        video.removeAttribute("src");
+        video.querySelectorAll("source").forEach(source => source.removeAttribute("src"));
+        if (video.readyState !== 0) video.load();
+        return;
+      }
       // Keep inactive clips unloaded: downloading seven videos at once causes slow starts,
       // excess mobile data use, and unnecessary memory pressure.
       video.preload = active ? "metadata" : "none";
@@ -676,7 +750,7 @@ const hiddenGemDetails = {"Kerala":{"Kanthalloor":"A misty highland village abou
       });
       // Some browsers can interrupt autoplay after a tab visibility/network change.
       video.addEventListener("pause", () => {
-        if (posterCards.indexOf(card) === posterIndex && !posterPaused && !document.hidden) {
+        if (!posterMobileMode && posterCards.indexOf(card) === posterIndex && !posterPaused && !document.hidden) {
           const retry = video.play();
           if (retry && typeof retry.catch === "function") retry.catch(() => {});
         }
@@ -735,7 +809,7 @@ const hiddenGemDetails = {"Kerala":{"Kanthalloor":"A misty highland village abou
     posterTimer = setTimeout(() => {
       movePoster(1);
       restartPosterTimer();
-    }, 6500 + Math.floor(Math.random() * 2500));
+    }, posterMobileMode ? 10500 : 6500 + Math.floor(Math.random() * 2500));
   }
   posterPrev?.addEventListener("click", () => { movePoster(-1); restartPosterTimer(); });
   posterNext?.addEventListener("click", () => { movePoster(1); restartPosterTimer(); });

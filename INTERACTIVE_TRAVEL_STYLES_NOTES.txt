@@ -1,0 +1,12 @@
+JHUK JHUK HOLIDAYS — INTERACTIVE TRAVEL STYLE SECTION
+
+Updates:
+- Travel-style cards respond to click/tap and keyboard activation using native buttons.
+- Selected card receives a clear teal active state and aria-pressed state.
+- Selection synchronizes with the trip-style planner dropdown, including Relaxation.
+- Planner helper copy updates with a friendly, contextual response using a polite live region.
+- Hover/focus reveals a small “Choose this vibe” affordance; reduced-motion preferences are respected.
+- Existing V53 layout and card order preserved.
+- Service-worker cache advanced to jjh-shell-v29.
+
+Validation to perform: test each of the six cards, confirm dropdown selection sync, and verify planner submission on desktop/mobile.

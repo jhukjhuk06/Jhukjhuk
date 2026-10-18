@@ -1,0 +1,14 @@
+JHUK JHUK HOLIDAYS V53 — MOBILE HOMEPAGE OPTIMIZATION
+
+Applied an append-only responsive CSS patch to preserve the approved desktop design while improving phone layout.
+- Reduced mobile navbar height and aligned dropdown position.
+- Reworked mobile hero sizing/positioning to reduce fixed-height whitespace and keep carousel controls visible.
+- Made planner fields a compact two-column layout with full-width destination and submit action.
+- Travel promise grid becomes two columns with readable contrast.
+- Section headings and lead text stack naturally on narrow screens.
+- Destination/package cards and filter controls fit phone widths without horizontal page overflow.
+- Travel-style cards use a two-column grid with readable text.
+- Added narrow-phone adjustments and reduced-motion behavior.
+- Advanced service-worker cache to jjh-shell-v30.
+
+Validation: JS syntax, HTML parse, duplicate IDs, local references, CSS brace balance and ZIP integrity checked. A real-device/browser test is still recommended for visual confirmation and external media behavior.

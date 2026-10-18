@@ -1,0 +1,15 @@
+JHUK JHUK HOLIDAYS — HOMEPAGE REFINEMENT NOTES
+Baseline: V53 HONOR-inspired complete candidate. Preserve the approved cinematic V53 visual identity and existing section structure.
+
+Homepage changes:
+- Clarified hero supporting copy and aligned primary CTA wording to “Plan My Trip”.
+- Made “Explore Destinations” action clearer.
+- Added Experiences to top navigation, pointing to existing travel-style section.
+- Clarified package-section copy around comparing destinations, duration and starting prices.
+- Improved trip-planning CTA semantics and submit labeling.
+- Added responsive visual polish for package controls, focus states, image sizing and reduced motion.
+- Updated service worker cache version to jjh-shell-v28.
+
+No fabricated testimonials, ratings, guarantees or business claims were added. Existing destination/package data and enquiry behavior were preserved.
+
+Validation required/performed after packaging: JS syntax, HTML parse, duplicate IDs, local file references, filter metadata and ZIP integrity. Live external media and real-device browser rendering still require browser testing.

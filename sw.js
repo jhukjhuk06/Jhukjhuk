@@ -1,4 +1,4 @@
-const CACHE_NAME = "jjh-shell-v28";
+const CACHE_NAME = "jjh-shell-v30";
 const CACHE_PREFIX = "jjh-shell-";
 const SHELL = [
   "./",

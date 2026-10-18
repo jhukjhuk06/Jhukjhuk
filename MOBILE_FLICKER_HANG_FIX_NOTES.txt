@@ -1,0 +1,17 @@
+JHUK JHUK HOLIDAYS — MOBILE FLICKER / HANG STABILITY PATCH
+Baseline: V53 HOMEPAGE PREMIUM FINAL. Design layout and desktop cinematic behavior are retained.
+
+Findings in source:
+1. Intro screen preloaded a full-screen external MP4 with preload=auto and autoplay, and kept the page locked for 10 seconds. This can feel like a hang on mobile and can compete with hero media for bandwidth/decoding.
+2. Seven destination cards each included an MP4. Although the carousel attempted to pause inactive videos, active video pause events retried playback, and visibility changes triggered resynchronization. On mobile this can cause decoder/network churn and visual switching.
+3. Carousel randomly shuffled cards and used image transforms/animation while video transitions were also running. Lower-powered phones can stutter or flicker during these combined effects.
+
+Changes made:
+- Mobile/reduced-data mode: do not fetch/play intro MP4; use the existing cinematic background/poster treatment and reduce intro lock to 2.6 seconds (skip button remains available). Desktop intro behavior stays at 10 seconds.
+- Mobile/reduced-data mode: disable carousel video sources before they are fetched; use each existing poster image as the hero visual. Desktop keeps the video carousel.
+- Mobile poster transitions are less frequent and do not run expensive zoom/pan/filter animations.
+- Avoid autoplay retry loop on mobile; desktop retry behavior remains.
+- Bumped service worker cache to jjh-shell-v29 so stale CSS/JS are less likely to persist.
+
+Validation: run JavaScript syntax checks, HTML parsing, duplicate-ID check, local asset reference checks, and ZIP integrity check.
+Limitation: real-device browser testing is still required to confirm device-specific rendering/network behavior.
