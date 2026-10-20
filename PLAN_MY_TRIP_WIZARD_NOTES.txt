@@ -1,0 +1,23 @@
+JHUK JHUK HOLIDAYS — GUIDED PLAN MY TRIP FLOW
+Built on the V53 Mobile Flicker/Loading Fix V2 baseline. The existing homepage and destination/package design are retained.
+
+Implemented 7-step guided wizard:
+1. Travel mood
+2. Destination direction and free-text destination ideas
+3. Exact date/month/flexible dates and departure city
+4. Adults, children, infants, child ages and room preference
+5. Budget basis, budget range, stay style, transport, meals and special requests
+6. Lead traveller name, mobile, optional email and preferred follow-up
+7. Review trip brief and submit to WhatsApp with collected details prefilled
+
+Behavior:
+- Plan My Trip buttons open the wizard.
+- Existing planner form submission opens the wizard instead of jumping straight to contact.
+- Existing planner values prefill the wizard when available.
+- Step-by-step progress, back navigation, validation and sessionStorage persistence are included.
+- Mobile uses a full-screen panel; desktop uses a centered modal.
+- No passport or identity details are requested.
+- WhatsApp submission is user-initiated and opens a prefilled message; no backend database or automatic contact storage is introduced.
+- Updated service-worker cache to jjh-shell-v28.
+
+QA: JS syntax, HTML parsing, duplicate IDs, local file references, CSS brace balance and ZIP integrity checked. Real-device/browser interaction and WhatsApp handoff still need manual testing.

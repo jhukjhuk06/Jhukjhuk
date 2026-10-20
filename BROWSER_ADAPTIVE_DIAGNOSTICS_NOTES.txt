@@ -1,0 +1,20 @@
+JHUK JHUK HOLIDAYS — BROWSER-AWARE OPTIMIZATION
+Based on the locked V53 Guided Plan My Trip / Phone Smoothness Optimized bundle.
+
+What this adds:
+- Client-side detection of viewport, device pixel ratio, coarse pointer, reduced motion, hardware concurrency, device memory (where supported), online state, and Network Information API (where supported).
+- Lightweight mode for mobile/constrained devices; disables cinematic video decoding on mobile, avoids costly motion, and retains poster images.
+- Low-bandwidth/data-saver mode based on the browser's exposed network hints.
+- Runtime observation (where supported) of long tasks, layout shifts, largest-contentful-paint, failed images, JS/resource errors, and load timing.
+- No telemetry is transmitted and no persistent tracking is added.
+
+How to use diagnostics:
+1. Deploy to a staging URL.
+2. Open the page with ?jjhdebug=1 appended, e.g. https://your-staging-site/index.html?jjhdebug=1
+3. A local diagnostics panel appears. Reproduce the flicker/hang and press “Download report”.
+4. Share jjh-browser-diagnostics.json here for analysis. Remove ?jjhdebug=1 for normal browsing.
+
+Limitations:
+- Browser support for deviceMemory, network information, longtask, LCP, and layout-shift varies; unavailable fields are omitted or reported as unsupported.
+- This is browser-aware adaptation, not remote live monitoring. The browser report is created locally and only shared if the site owner downloads and sends it.
+- Real-device and live-network validation remains necessary.

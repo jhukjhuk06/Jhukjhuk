@@ -1,10 +1,14 @@
-const CACHE_NAME = "jjh-shell-v30";
+const CACHE_NAME = "jjh-shell-v32";
 const CACHE_PREFIX = "jjh-shell-";
 const SHELL = [
   "./",
   "./index.html",
   "./assets/css/style.css",
   "./assets/js/script.js",
+  "./assets/js/plan-trip-wizard.js",
+  "./assets/js/browser-adaptive.js",
+  "./assets/css/plan-trip-wizard.css",
+  "./assets/css/homepage-polish.css",
   "./assets/images/jhuk-jhuk-logo.png",
   "./assets/images/jhuk-jhuk-logo-exact.png",
   "./manifest.webmanifest"

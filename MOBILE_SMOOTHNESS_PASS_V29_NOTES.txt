@@ -1,0 +1,21 @@
+JHUK JHUK HOLIDAYS V53 GUIDED PLAN MY TRIP — MOBILE SMOOTHNESS PASS
+
+Baseline preserved: seven-step guided Plan My Trip wizard, traveller details, review-before-send, WhatsApp handoff, original V53 visual identity and content.
+
+Changes:
+- Added responsive Unsplash srcset/sizes candidates so modern mobile browsers can choose appropriately sized images rather than always downloading large desktop variants.
+- Responsive image candidates also apply to destination/package/gallery images inserted dynamically.
+- Disabled costly card/video transforms and transitions on mobile; poster videos remain hidden in mobile mode and poster images remain visible.
+- Removed backdrop blur from mobile surfaces to reduce GPU compositing work.
+- Added narrow-screen typography/container safeguards and touch-action handling.
+- Improved wizard safe-area handling, dynamic viewport sizing, sticky controls and scrolling behavior.
+- Wizard close now restores the previous body overflow state rather than always clearing it.
+- Updated service worker cache to jjh-shell-v29 and included wizard JS/CSS and homepage polish CSS in the app shell.
+
+Validation:
+- Node syntax check passed for assets/js/script.js, assets/js/plan-trip-wizard.js and sw.js.
+- HTML parsing, duplicate-ID and local-reference checks performed separately.
+- ZIP integrity verified.
+
+Limitations:
+- No physical phone/browser trace was available in this environment. External image/CDN loading, actual memory pressure and visual behavior must still be checked on representative phones and browsers.

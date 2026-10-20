@@ -1,0 +1,15 @@
+V53 MOBILE FLICKER / NON-LOADING FIX V2
+
+Root cause addressed: video <source src> and autoplay/preload attributes were present in initial HTML, so browsers could begin downloading multiple MP4s before the DOMContentLoaded mobile-mode handler stripped the sources.
+
+Changes:
+- Video sources are now data-src only in HTML; no video source can download during initial parse.
+- Desktop hydrates sources on demand; mobile never hydrates any video sources.
+- Mobile carousel auto-advance disabled; users can still navigate manually with controls/dots.
+- Mobile image sizes/quality reduced for Unsplash assets.
+- Removed mobile image zoom/pan animations and will-change layers that can cause GPU pressure/flicker.
+- Added an independent intro/scroll-lock failsafe so the page cannot remain covered if startup JS stalls.
+- Service worker cache bumped to jjh-shell-v31.
+- V53 content, branding, layout, desktop cinematic video behavior retained.
+
+Validation: JavaScript syntax, HTML parse, source-attribute audit, local references, duplicate IDs, service-worker syntax, ZIP integrity. Physical-device testing remains necessary.

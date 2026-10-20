@@ -3709,3 +3709,56 @@ body{font-family:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;color:var(-
   .hero-poster-stage .poster-card,.hero-poster-stage .poster-card img,.hero-poster-stage .poster-carousel,
   .destination,.package-card,.style-card { animation:none !important; transition:none !important; }
 }
+
+
+/* V53 MOBILE LOAD-STABILITY PATCH (surgical, keeps approved visual layout) */
+@media (max-width: 760px) {
+  /* Mobile has a static image carousel; avoid expensive compositing layers and zoom animations. */
+  .poster-card { will-change:auto !important; transition:opacity .22s ease !important; }
+  .poster-card img,.poster-card .poster-fallback { animation:none !important; transition:none !important; transform:scale(1.015) !important; }
+  .poster-card.motion-zoom img,.poster-card.motion-pan-left img,.poster-card.motion-pan-right img,
+  .poster-card.motion-lift img,.poster-card.motion-breathe img { animation:none !important; }
+  .poster-card.is-active img,.poster-card.is-active .poster-fallback { transform:scale(1.015) !important; }
+  .intro-stars,.intro-world-lines,.intro-orbit,.intro-route,.intro-plane { animation:none !important; }
+  .brand-intro { transition:opacity .3s ease,visibility .3s ease !important; }
+}
+@media (max-width: 430px) {
+  .hero-poster-stage { overflow:clip; }
+  .poster-card { backface-visibility:hidden; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .brand-intro,.poster-card,.poster-card img,.poster-card .poster-fallback { animation:none !important; transition:none !important; }
+}
+
+/* V53 mobile smoothness pass — targeted overrides, original design preserved */
+@media (max-width: 760px) {
+  html { scroll-behavior: auto; -webkit-text-size-adjust: 100%; }
+  body { overflow-x: clip; }
+  .brand-intro, .intro-aurora, .intro-stars, .intro-world-lines, .intro-route,
+  .intro-plane, .intro-ring, .intro-halo { animation-duration: .01ms !important; }
+  .intro-cinematic-shot video { display: none !important; }
+  .poster-card, .poster-media, .poster-fallback, .destination-card, .package-card,
+  .experience-card, .travel-style-card { animation: none !important; transition: none !important; }
+  .poster-card.is-active { transform: none !important; }
+  .poster-card img, .destination-card img, .package-card img { transform: none !important; }
+  .poster-media { display: none !important; }
+  .poster-fallback { display: block !important; }
+  .navbar, .nav-links, .jjh-wizard-top { -webkit-backdrop-filter: none !important; backdrop-filter: none !important; }
+  button, .btn, a { -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
+  input, select, textarea { font-size: 16px !important; }
+}
+@media (max-width: 430px) {
+  .container { width: min(100% - 28px, 100%); }
+  .poster-carousel { overflow: clip; }
+  .poster-copy strong { font-size: clamp(1.65rem, 8vw, 2.5rem); }
+  .poster-copy span { max-width: 26ch; }
+  .section-title, .section-heading h2 { overflow-wrap: anywhere; }
+}
+@media (max-width: 360px) {
+  .nav-actions .btn { padding-inline: 10px; font-size: 12px; }
+  .company-logo img { max-width: 118px; }
+  .poster-copy { padding-inline: 16px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}

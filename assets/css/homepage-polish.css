@@ -20,3 +20,19 @@
  .package-count{display:block;width:100%}
 }
 @media(prefers-reduced-motion:reduce){.destination,.package-card,.style-card{transition:none!important}}
+
+/* Browser-aware adaptive modes: apply only when runtime/browser signals indicate constrained conditions. */
+.jjh-light-mode .poster-media,
+.jjh-light-mode video { display:none !important; }
+.jjh-light-mode .poster-card,
+.jjh-light-mode .destination-card,
+.jjh-light-mode .package-card { animation:none !important; }
+.jjh-light-mode .poster-card img,
+.jjh-light-mode img { transform:none !important; }
+.jjh-light-mode *, .jjh-low-bandwidth * { scroll-behavior:auto !important; }
+.jjh-low-bandwidth video { display:none !important; }
+.jjh-reduced-motion *, .jjh-reduced-motion *::before, .jjh-reduced-motion *::after { animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; scroll-behavior:auto !important; }
+@media(max-width:760px){
+  .jjh-mobile-static .poster-media{display:none!important}
+  .jjh-mobile-static .poster-fallback{transform:none!important;animation:none!important}
+}

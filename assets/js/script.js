@@ -43,7 +43,9 @@ document.addEventListener("DOMContentLoaded", () => {
         introVideo.querySelectorAll("source").forEach(source => source.removeAttribute("src"));
         introVideo.load();
       } else {
+        introVideo.querySelectorAll("source[data-src]").forEach(source => source.src = source.dataset.src);
         introVideo.preload = "metadata";
+        introVideo.load();
         const playIntroVideo = () => { if (!document.hidden) introVideo.play().catch(() => {}); };
         playIntroVideo();
         document.addEventListener("visibilitychange", () => {
@@ -104,6 +106,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function planner(prefill = "") {
     if (prefill && destinationInput) destinationInput.value = prefill;
+    if (typeof window.openJjhTripWizard === "function") {
+      window.openJjhTripWizard(prefill || destinationInput?.value || "");
+      return;
+    }
     plannerEl?.scrollIntoView({ behavior: "smooth", block: "center" });
     window.setTimeout(() => destinationInput?.focus(), 450);
   }
@@ -263,7 +269,11 @@ const packageDetails={
       destinationInput?.focus();
       return;
     }
-    openTravelContact({ destination: details.destination });
+    if (typeof window.openJjhTripWizard === "function") {
+      window.openJjhTripWizard(details.destination);
+    } else {
+      openTravelContact({ destination: details.destination });
+    }
   });
 
   document.querySelectorAll(".destination[data-place]").forEach(card => {
@@ -714,6 +724,9 @@ const hiddenGemDetails = {"Kerala":{"Kanthalloor":"A misty highland village abou
       // excess mobile data use, and unnecessary memory pressure.
       video.preload = active ? "metadata" : "none";
       if (active) {
+        video.querySelectorAll("source[data-src]").forEach(source => {
+          if (!source.src) source.src = source.dataset.src;
+        });
         video.muted = true;
         video.playsInline = true;
         if (video.readyState === 0) video.load();
@@ -803,7 +816,9 @@ const hiddenGemDetails = {"Kerala":{"Kanthalloor":"A misty highland village abou
   function stopPosterTimer() { if (posterTimer) { clearTimeout(posterTimer); posterTimer = null; } }
   function restartPosterTimer() {
     stopPosterTimer();
-    if (posterPaused || posterCards.length < 2) return;
+    // Mobile: keep the selected destination stable. Automatic card swaps can look like
+    // flicker on touch browsers and force repeated image compositing on constrained GPUs.
+    if (posterMobileMode || posterPaused || posterCards.length < 2) return;
     // Fallback shuffle in case a video has no usable duration or is blocked by the browser.
     // Normally the `ended` event advances the carousel as soon as the active clip finishes.
     posterTimer = setTimeout(() => {
@@ -838,8 +853,34 @@ const hiddenGemDetails = {"Kerala":{"Kanthalloor":"A misty highland village abou
   renderPosterCarousel();
   restartPosterTimer();
 
-  // Improve native image loading without changing the visual design.
-  document.querySelectorAll("img[loading='lazy']").forEach(img => img.decoding = "async");
+  // Responsive image candidates let mobile browsers download only the size they need.
+  // Existing source URLs remain intact as a fallback; no visual assets are replaced.
+  const addResponsiveImageCandidates = img => {
+    if (!(img instanceof HTMLImageElement) || !/images\.unsplash\.com/.test(img.src) || img.dataset.jjhResponsive === "1") return;
+    try {
+      const makeCandidate = width => {
+        const candidate = new URL(img.currentSrc || img.src);
+        candidate.searchParams.set("w", String(width));
+        candidate.searchParams.set("q", width <= 800 ? "78" : "82");
+        candidate.searchParams.set("auto", "format");
+        return `${candidate.toString()} ${width}w`;
+      };
+      img.srcset = [480, 800, 1200, 1600].map(makeCandidate).join(", ");
+      img.sizes = img.closest(".poster-card") ? "(max-width: 760px) 100vw, (max-width: 1200px) 70vw, 1200px" : "(max-width: 600px) 100vw, (max-width: 1000px) 50vw, 800px";
+      img.decoding = "async";
+      img.dataset.jjhResponsive = "1";
+    } catch (_) { img.decoding = "async"; }
+  };
+  document.querySelectorAll("img").forEach(addResponsiveImageCandidates);
+  // Also cover cards/galleries inserted later by destination and package interactions.
+  const responsiveImageObserver = new MutationObserver(records => {
+    records.forEach(record => record.addedNodes.forEach(node => {
+      if (!(node instanceof Element)) return;
+      if (node.matches?.("img")) addResponsiveImageCandidates(node);
+      node.querySelectorAll?.("img").forEach(addResponsiveImageCandidates);
+    }));
+  });
+  responsiveImageObserver.observe(document.body, { childList: true, subtree: true });
 
   // Register the lightweight PWA shell. It intentionally caches only first-party assets;
   // remote destination photography remains network-first.
